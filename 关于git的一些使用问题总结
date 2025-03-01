@@ -1,0 +1,24 @@
+2025-3-1
+问题：在将lora项目上传的gitlab的过程中出现了一个问题，github.com并不能被ping通，但是浏览器都是能够访问到实际的github的。
+解决方式：通过直接配置windows的host文件来解决
+具体方式：参照url  https://xzxldl.hashnode.dev/git-dnsgit
+追加的host内容：
+# 解析的ip 域名，eg：
+140.82.114.3 github.com
+151.101.1.194 github.global.ssl.fastly.net
+151.101.65.194 github.global.ssl.fastly.net
+151.101.129.194 github.global.ssl.fastly.net
+151.101.193.194 github.global.ssl.fastly.net
+185.199.108.153 assets-cdn.github.com
+185.199.109.153 assets-cdn.github.com
+185.199.110.153 assets-cdn.github.com
+185.199.111.153 assets-cdn.github.com
+使用的相关命令：
+git config --global http.https://github.com.proxy socks5://127.0.0.1:33211
+端口 33211 是vpn的socket5的端口信息
+刷新代理
+ipconfig /flushdns
+取消代理
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+
